@@ -5,8 +5,8 @@
 // @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
 // @author      https://github.com/michalani
 // @license     MIT
-// @match     https://www.amazon.co.uk/*/dp/*
-// @match     https://www.amazon.co.uk/dp/*
+// @match       https://www.amazon.co.uk/*/dp/*
+// @match       https://www.amazon.co.uk/dp/*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.js
 // @grant       none
@@ -39,4 +39,4 @@ function main(){
     })
 }
 
-main();
+main(); 
