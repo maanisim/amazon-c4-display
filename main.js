@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name        Amazon camelcamelcamel Chart
-// @namespace   amazon.co.uk
-// @version     1
+// @name        Amazon CamelCamelCamel Chart
+// @namespace   amazon-c4-display
+// @version     1.1
 // @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
-// @author      https://github.com/michalani/
+// @author      https://github.com/michalani
 // @license     MIT
-// @include     https://www.amazon.co.uk/*/dp/*
-// @include     https://www.amazon.co.uk/dp/*
+// @match     https://www.amazon.co.uk/*/dp/*
+// @match     https://www.amazon.co.uk/dp/*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.js
 // @grant       none
@@ -16,7 +16,8 @@
 function main(){
     //parse the produc id of on the amazon (https://www.amazon.co.uk/*/dp/B07GDR2PH9) where B07GDR2PH9 would be product id
     let currentURL = window.location.href;
-    let productID = currentURL.split("/dp/")[1].split("?")[0];currentURL.split("/dp/")[1].split("?")[0].split('/')[0];
+    //var productID = currentURL.split("/dp/")[1].split("?")[0];
+    let productID = currentURL.split("/dp/")[1].split("?")[0].split('/')[0];
 
     //fetch image from the camelcamelcamel
     var img = document.createElement("img");
@@ -34,7 +35,7 @@ function main(){
 
     //make the chart clickable directly to the camelcamelcamel page.
     img.addEventListener("click", function() {
-        window.location.replace("https://uk.camelcamelcamel.com/product/"+productID);
+        location.href = ("https://uk.camelcamelcamel.com/product/"+productID);
     })
 }
 
