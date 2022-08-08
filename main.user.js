@@ -51,7 +51,7 @@ function main(){
 
 //parse the country based on the url
 function getTLD(){
-    var tld = currentURL.split('amazon.')[1].split('/')[0].split('.');
+    var tld = location.href.split('amazon.')[1].split('/')[0].split('.');
 
     //split the tld even more to get the country code for dumb tlds such as co.uk
     if(tld.length > 1){
@@ -66,7 +66,6 @@ function getTLD(){
             tld = "us"
             break;
         default:
-            tld = "us"
             break;
     }
 
