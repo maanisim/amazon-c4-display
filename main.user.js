@@ -26,13 +26,12 @@ img = document.createElement("img");
 
 //amazon and 3rd parties
 img.src = "https://charts.camelcamelcamel.com/"+tld+"/"+productID+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
+//img.setAttibute("id", "camelcamelcamel-chart-img"); 
 
 //where to append the chart
 let src = document.getElementById("leftCol");
 
 function main(){
-    //img.setAttribute("id", "priceTrackingImage");
-
     src.appendChild(img);
 
     //make the chart clickable directly to the camelcamelcamel page.
@@ -43,9 +42,7 @@ function main(){
     //listen for product carousel changes
     var ProductChange = document.querySelectorAll('span.a-button-inner button');
     for (let i = 0; i < ProductChange.length; i++) {
-        //const element = ProductChange[i];
         ProductChange[i].addEventListener("click", productChanged);
-        //ProductChange[i].myParam = currentURL;
     }
 }
 
@@ -72,18 +69,15 @@ function getTLD(){
     return tld;
 }
 
+// once product changed listen for the url to change and update the chart accordingly
 function productChanged(){
-    //console.log('product changed');
     function isVarDifferent() {
-        if(currentURL===window.location.href) {//we want it to match
-            setTimeout(isVarDifferent, 300);//wait 300 millisecnds then recheck
+        if(currentURL===window.location.href) {
+            setTimeout(isVarDifferent, 300);
             return;
         }
         currentURL=window.location.href;
-        //currentURL = window.location.href;
         productID = currentURL.split("/dp/")[1].split("?")[0].split('/')[0];
-        //img.src =
-        //src.appendChild(img)
         imgArr = document.querySelectorAll(".leftCol img");
         imgArr[imgArr.length-1].src =  "https://charts.camelcamelcamel.com/"+tld+"/"+productID+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
     }
