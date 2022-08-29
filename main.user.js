@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.5
+// @version     1.5.1
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
 // @license     MIT
@@ -38,7 +38,7 @@ function main(){
 
     //make the chart clickable directly to the camelcamelcamel page.
     img.addEventListener("click", function() {
-        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+productID+"cpf[]=amazon&cpf[]=new&active=summary&chart=0");
+        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+productID+"?cpf[]=amazon&cpf[]=new&active=summary&chart=0");
         //https://uk.camelcamelcamel.com/product/B07Z6RD4M9?cpf[]=amazon&cpf[]=new&active=summary&chart=0
 
     })
