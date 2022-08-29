@@ -5,7 +5,7 @@
 // @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
 // @author      https://github.com/michalani
 // @license     MIT
-// @include     /^https?:\/\/www.amazon\..+\/dp\/*\/[a-zA-Z0-9]*
+// @include     /^https?:\/\/www.amazon\..+\/[a-z]p\/*\/[a-zA-Z0-9]*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @grant       none
