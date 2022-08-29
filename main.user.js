@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.4
-// @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
+// @version     1.5
+// @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
 // @license     MIT
 // @include     /^https?:\/\/www.amazon\..+\/[gd]p\/*\/[a-zA-Z0-9]*
@@ -17,7 +17,8 @@
 // v1.1 - fixed bug where the chart was not displayed due to amazons parameters
 // v1.2 - added more wide countries support
 // v1.3 - refactored the code
-// v1.4 - added support for /gp/ products such as apple devices
+// v1.4 - added support for /gp/ products
+// v1.5 - added more accurate links when clicking the graph
 
 var currentURL = window.location.href;
 var productID = getProductId(currentURL);
@@ -37,7 +38,9 @@ function main(){
 
     //make the chart clickable directly to the camelcamelcamel page.
     img.addEventListener("click", function() {
-        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+productID);
+        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+productID+"cpf[]=amazon&cpf[]=new&active=summary&chart=0");
+        //https://uk.camelcamelcamel.com/product/B07Z6RD4M9?cpf[]=amazon&cpf[]=new&active=summary&chart=0
+
     })
 
     //listen for product carousel changes
