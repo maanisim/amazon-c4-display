@@ -5,7 +5,7 @@
 // @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
 // @author      https://github.com/michalani
 // @license     MIT
-// @include     /^https?:\/\/www.amazon\..+\/[a-z]p\/*\/[a-zA-Z0-9]*
+// @include     /^https?:\/\/www.amazon\..+\/[gd]p\/*\/[a-zA-Z0-9]*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @grant       none
@@ -17,9 +17,10 @@
 // v1.1 - fixed bug where the chart was not displayed due to amazons parameters
 // v1.2 - added more wide countries support
 // v1.3 - refactored the code
+// v1.4 - added support for /gp/ products such as apple devices
 
 var currentURL = window.location.href;
-var productID = currentURL.split("/dp/")[1].split("?")[0].split('/')[0];
+var productID = getProductId(currentURL);
 var tld = getTLD();
 //fetch image from the camelcamelcamel
 img = document.createElement("img");
@@ -69,6 +70,11 @@ function getTLD(){
     return tld;
 }
 
+//spit out product id via regex.
+function getProductId(urlToSplit){
+    return(urlToSplit.split(/\/gp\/product\/|\/dp\//)[1].split("?")[0].split('/')[0]);
+}
+
 // once product changed listen for the url to change and update the chart accordingly
 function productChanged(){
     function isVarDifferent() {
@@ -77,7 +83,7 @@ function productChanged(){
             return;
         }
         currentURL=window.location.href;
-        productID = currentURL.split("/dp/")[1].split("?")[0].split('/')[0];
+        productID = getProductId(currentURL);
         imgArr = document.querySelectorAll(".leftCol img");
         imgArr[imgArr.length-1].src =  "https://charts.camelcamelcamel.com/"+tld+"/"+productID+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
     }
