@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.3
+// @version     1.4
 // @description Displays a camelcamelcamel past price performance chart directly on the amazon.co.uk
 // @author      https://github.com/michalani
 // @license     MIT
