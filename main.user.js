@@ -1,10 +1,9 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.7
+// @version     1.7.1
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
-// @license     MIT
 // @include     /^https?:\/\/www.amazon\.*\/*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
@@ -20,9 +19,8 @@
 // v1.4 - added support for /gp/ products
 // v1.5 - added more accurate links when clicking the graph
 // v1.6 - improved ASIN product id grabbing
-// v1.7 - made graph logic less resource intensive / 
+// v1.7 - made graph logic less resource intensive
 
-var currentURL = window.location.href;
 var ASIN = document.querySelector('#ASIN').value
 var tld = getTLD();
 
@@ -61,8 +59,6 @@ function getTLD(){
     //split the tld even more to get the country code for dumb tlds such as co.uk
     if(tld.length > 1){
         tld = tld[1]
-    } else{
-        tld = tld[0]
     }
 
     //future proofing for other countries
@@ -84,7 +80,6 @@ function productChanged(){
             setTimeout(isVarDifferent, 300);
             return;
         }
-        currentURL=window.location.href;
         ASIN = document.querySelector('#ASIN').value;
         camelChartImg.src = "https://charts.camelcamelcamel.com/"+tld+"/"+ASIN+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
 
