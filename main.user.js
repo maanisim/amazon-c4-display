@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.6
+// @version     1.7
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
 // @license     MIT
@@ -20,38 +20,41 @@
 // v1.4 - added support for /gp/ products
 // v1.5 - added more accurate links when clicking the graph
 // v1.6 - improved ASIN product id grabbing
+// v1.7 - made graph logic less resource intensive / 
 
 var currentURL = window.location.href;
-var productID = document.querySelector('#ASIN').value
+var ASIN = document.querySelector('#ASIN').value
 var tld = getTLD();
-//fetch image from the camelcamelcamel
-img = document.createElement("img");
 
-//amazon and 3rd parties
-img.src = "https://charts.camelcamelcamel.com/"+tld+"/"+productID+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
-//img.setAttibute("id", "camelcamelcamel-chart-img"); 
+//fetch image from the camelcamelcamel
+camelChartImg = document.createElement("img");
+camelChartImg.src = "https://charts.camelcamelcamel.com/"+tld+"/"+ASIN+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
 
 //where to append the chart
 let src = document.getElementById("leftCol");
 
 function main(){
-    src.appendChild(img);
+    src.appendChild(camelChartImg);
 
     //make the chart clickable directly to the camelcamelcamel page.
-    img.addEventListener("click", function() {
-        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+productID+"?cpf[]=amazon&cpf[]=new&active=summary&chart=0");
+    camelChartImg.addEventListener("click", function() {
+        location.href = ("https://"+tld+".camelcamelcamel.com/product/"+ASIN+"?cpf[]=amazon&cpf[]=new&active=summary&chart=0");
         //https://uk.camelcamelcamel.com/product/B07Z6RD4M9?cpf[]=amazon&cpf[]=new&active=summary&chart=0
 
     })
-
-    //listen for product carousel changes
-    var ProductChange = document.querySelectorAll('span.a-button-inner button');
-    for (let i = 0; i < ProductChange.length; i++) {
-        ProductChange[i].addEventListener("click", productChanged);
-    }
+    productchangeListener();
 }
 
-//parse the country based on the url
+//listen for product carousel clicks
+function productchangeListener(){
+    var similarProductsButtons = document.querySelectorAll('span.a-button-inner button');
+    for (let i = 0; i < similarProductsButtons.length; i++) {
+        similarProductsButtons[i].addEventListener("click", productChanged);
+    }
+
+}
+
+//parse the country ID based on the url
 function getTLD(){
     var tld = location.href.split('amazon.')[1].split('/')[0].split('.');
 
@@ -74,22 +77,17 @@ function getTLD(){
     return tld;
 }
 
-//spit out product id via regex.
-function getProductId(urlToSplit){
-    return(urlToSplit.split(/\/gp\/product\/|\/dp\//)[1].split("?")[0].split('/')[0]);
-}
-
-// once product changed listen for the url to change and update the chart accordingly
+//once product changed find the products ASIN to get new chart
 function productChanged(){
     function isVarDifferent() {
-        if(currentURL===window.location.href) {
+        if(ASIN === document.querySelector('#ASIN').value) {
             setTimeout(isVarDifferent, 300);
             return;
         }
         currentURL=window.location.href;
-        productID = document.querySelector('#ASIN').value;
-        imgArr = document.querySelectorAll(".leftCol img");
-        imgArr[imgArr.length-1].src =  "https://charts.camelcamelcamel.com/"+tld+"/"+productID+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
+        ASIN = document.querySelector('#ASIN').value;
+        camelChartImg.src = "https://charts.camelcamelcamel.com/"+tld+"/"+ASIN+"/amazon-new.png?force=1&zero=0&w=855&h=513&desired=false&legend=1&ilt=1&tp=all&fo=0&lang=en";
+
     }
     isVarDifferent();
 }
