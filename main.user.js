@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Amazon CamelCamelCamel Chart test1
+// @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
 // @version     1.8.1
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
