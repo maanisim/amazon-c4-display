@@ -4,7 +4,7 @@
 // @version     1.8.3
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
-// @include     /^https?:\/\/www.amazon\.*\/*
+// @include     /^https?:\/\/(www|smile).amazon\.*\/*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @grant       none
