@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.9.0
+// @version     1.8.3
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/michalani
 // @include     /^https?:\/\/www.amazon\.*\/*
-// @include     /^https?:\/\/smile.amazon\.*\/*
 // @updateURL   https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @downloadURL https://raw.githubusercontent.com/michalani/amazon-c4-display/master/main.user.js
 // @grant       none
@@ -22,7 +21,6 @@
 // v1.6 - improved ASIN product id grabbing
 // v1.7 - made graph logic less resource intensive
 // v1.8 - added hagglezon logic to find better deals on different Amazon countries
-// v1.9 - added smile subdomain logic
 
 var ASIN = document.querySelector('#ASIN').value
 var tld = getTLD();
