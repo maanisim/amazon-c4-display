@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Amazon CamelCamelCamel Chart
 // @namespace   amazon-c4-display
-// @version     1.8.4
+// @version     1.8.5
 // @description Displays a camelcamelcamel past price performance chart directly on Amazon
 // @author      https://github.com/maanisim
 // @include     /^https?:\/\/(www|smile).amazon\.*\/*
@@ -70,13 +70,9 @@ function getTLD(){
         tld = tld[1]
     }
 
-    //future proofing for other countries
-    switch (tld) {
-        case "com":
-            tld = "us"
-            break;
-        default:
-            break;
+    //if URL does not hint to the origin use US instead
+    if(tld == "com"){
+        tld = "us"
     }
 
     return tld;
